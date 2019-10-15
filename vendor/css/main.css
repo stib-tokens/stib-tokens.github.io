@@ -736,7 +736,7 @@ button.navbar-toggler, button.navbar-toggler-close{
     z-index: 999;
 }
 
-.side-menu ul li:before {content: '';position: absolute;top: 50%;right: 4px;-webkit-transform: translateY(-50%);-ms-transform: translateY(-50%);transform: translateY(-50%);width: 8px;height: 1px;background: #fff;opacity: 0;visibility: hidden;-webkit-transition: .5s;-o-transition: .5s;transition: .5s;}
+/* .side-menu ul li:before {content: '';position: absolute;top: 50%;right: 4px;-webkit-transform: translateY(-50%);-ms-transform: translateY(-50%);transform: translateY(-50%);width: 8px;height: 1px;background: #fff;opacity: 0;visibility: hidden;-webkit-transition: .5s;-o-transition: .5s;transition: .5s;}
 
 .side-menu ul li {
     position: relative;
@@ -757,7 +757,7 @@ button.navbar-toggler, button.navbar-toggler-close{
 .side-menu ul li:hover::before {
     opacity: 1;
     visibility: visible;
-}
+} */
 
 .title-philosophy, .title {
     position: relative;
@@ -1242,9 +1242,9 @@ ul.sub-menu a.nav-link {
     .icon-title:after{
         bottom: 0;
     }
-    .side-menu{
+    /* .side-menu{
         display: none;
-    }
+    } */
 }
 @media (max-width: 600px){
     .title-philosophy h1{
