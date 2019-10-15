@@ -146,21 +146,56 @@ ul{
     grid-template-columns: 1fr 1fr;
 }
 .grid-3-col{
+    -ms-grid-columns: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
 }
 @media (max-width: 992px){
     .grid-3-col{
+        -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
+        -ms-grid-rows: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
+    }
+    .grid-3-col > *:nth-child(1){
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+    }
+    .grid-3-col > *:nth-child(2){
+        -ms-grid-row: 1;
+        -ms-grid-column: 2;
+    }
+    .grid-3-col > *:nth-child(3){
+        -ms-grid-row: 2;
+        -ms-grid-column: 1;
+    }
+    .grid-3-col > *:nth-child(4){
+        -ms-grid-row: 2;
+        -ms-grid-column: 2;
     }
 }
 @media (max-width: 576px){
     .grid-3-col{
+        -ms-grid-columns: auto;
         grid-template-columns: auto;
+        -ms-grid-rows: auto auto auto;
         grid-template-rows: auto auto auto;
     }
+    .grid-3-col > *:nth-child(1){
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+    }
+    .grid-3-col > *:nth-child(2){
+        -ms-grid-row: 2;
+        -ms-grid-column: 1;
+    }
+    .grid-3-col > *:nth-child(3){
+        -ms-grid-row: 3;
+        -ms-grid-column: 1;
+    }
     .grid-3{
-        grid-column-start: unset!important;
+        -ms-grid-column: unset!important;
+            grid-column-start: unset!important;
+        -ms-grid-column-span: NaN!important;
         grid-column-end: unset!important;
     }
 }
@@ -172,6 +207,7 @@ ul{
         grid-template-rows: 1fr 1fr;
     }
     #roadmap .grid-2-col{
+        -ms-grid-rows: 1fr 350px;
         grid-template-rows: 1fr 350px;
     }
 }
@@ -245,7 +281,9 @@ a.eng{border-bottom: none!important;}
     display: block;
     margin: 10px auto;
     left: 50%;
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
     bottom: -30px;
 }
 .three-dots:before, .three-dots:after{
@@ -270,6 +308,8 @@ a.eng{border-bottom: none!important;}
     display: block;
     margin: 10px auto;
     left: 50%;
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
     bottom: -30px;
 }
