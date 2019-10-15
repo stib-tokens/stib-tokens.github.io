@@ -325,7 +325,7 @@ span.answers {
 
 .wrapper-answers {
     padding: 0 60px;
-    height: 140px;
+    height: 160px;
     width: 100%;
     -webkit-box-shadow: 35px 30px 45px #00000040;
             box-shadow: 35px 30px 45px #00000040;
@@ -991,6 +991,9 @@ ul.sub-menu a.nav-link {
     }
 }
 @media (max-width: 992px){
+    .wrapper-answers{
+        height: 200px;
+    }
     .wrapper-answers .answers-p{
         max-width: 280px;
         line-height: 19px;
@@ -1014,7 +1017,7 @@ ul.sub-menu a.nav-link {
         left: 0;
         bottom: 0;
         right: 0;
-        background: #191919;
+        background: #191919fa;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -1261,6 +1264,11 @@ ul.sub-menu a.nav-link {
     .wrapper-img-roadmap{
         margin: 0 15px;
         padding: 0;
+    }
+}
+@media (min-width: 576px){
+    ul.wrapper-questions{
+        width: 100%;
     }
 }
 @media (max-width: 576px){
