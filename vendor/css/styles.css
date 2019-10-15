@@ -3,7 +3,6 @@ html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    scroll-behavior: smooth;
 }
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: block;
@@ -149,6 +148,22 @@ ul{
 .grid-3-col{
     grid-template-columns: 1fr 1fr 1fr;
 }
+@media (max-width: 992px){
+    .grid-3-col{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+@media (max-width: 576px){
+    .grid-3-col{
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto;
+    }
+    .grid-3{
+        grid-column-start: unset;
+        grid-column-end: unset;
+    }
+}
 @media (max-width: 768px){
     .grid-2-col{
         -ms-grid-columns: 1fr;
@@ -156,15 +171,11 @@ ul{
         -ms-grid-rows: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
     }
-    .grid-2-col > *:nth-child(1){
-        -ms-grid-row: 1;
-        -ms-grid-column: 1;
-    }
-    .grid-2-col > *:nth-child(2){
-        -ms-grid-row: 2;
-        -ms-grid-column: 1;
+    #roadmap .grid-2-col{
+        grid-template-rows: 1fr 350px;
     }
 }
+
 .grid-4-col{
     -ms-grid-columns: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
