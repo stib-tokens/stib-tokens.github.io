@@ -261,3 +261,15 @@ a.eng{border-bottom: none!important;}
     right: -15px;
     left: unset;
 }
+.line{
+    position: absolute;
+    width: 35px;
+    height: 3px;
+    background: #f38320;
+    /* border-radius: 50%; */
+    display: block;
+    margin: 10px auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -30px;
+}

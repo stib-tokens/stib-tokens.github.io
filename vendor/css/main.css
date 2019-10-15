@@ -455,8 +455,8 @@ span.utility-title {
     position: absolute;
     top: 30px;
     right: 30px;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     background: transparent;
     outline: none;
     border: none;
@@ -945,7 +945,7 @@ ul.sub-menu a.nav-link {
 .tut-slide-horizon{
     width: 30px;
     margin: auto;
-    margin-bottom: 15px;
+    margin-top: 15px;
 }
 #tokens .grid-item:not(:last-child){
     border-right: 1px solid #f5f5f517;
@@ -1244,7 +1244,7 @@ ul.sub-menu a.nav-link {
     #tokens .grid-item{
         border-right: none!important;
         margin: 0 15px;
-        justify-content: start!important;
+        /* justify-content: start!important; */
         padding-bottom: 15px;
     }
     #tokens .grid-item:not(:first-child){
