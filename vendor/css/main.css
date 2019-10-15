@@ -305,7 +305,7 @@ table.table tr td, table.table tr th {padding-left: 15px;}
     margin: 0 auto;
 }
 span.answers {
-    font-size: 18px;
+    font-size: 16px;
     font-style: italic;
 }
 
@@ -968,7 +968,7 @@ ul.sub-menu a.nav-link {
 }
 @media (max-width: 992px){
     .wrapper-answers .answers-p{
-        max-width: 250px;
+        max-width: 280px;
         line-height: 19px;
     }
     #piechart-tokens{
