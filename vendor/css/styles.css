@@ -160,8 +160,8 @@ ul{
         grid-template-rows: auto auto auto;
     }
     .grid-3{
-        grid-column-start: unset;
-        grid-column-end: unset;
+        grid-column-start: unset!important;
+        grid-column-end: unset!important;
     }
 }
 @media (max-width: 768px){

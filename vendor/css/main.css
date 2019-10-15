@@ -1185,7 +1185,7 @@ ul.sub-menu a.nav-link {
         grid-column-end: 3;
     }
     #contact .grid-3-col{
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
     }
     #contact .grid-1{
         grid-column-start: 1;
@@ -1233,6 +1233,10 @@ ul.sub-menu a.nav-link {
     }
 }
 @media (max-width: 576px){
+    #contact .grid-1{
+        grid-column-start: unset; 
+        grid-column-end: unset; 
+    }
     .wrapper-questions{
         width: 90%;
         margin: 0 auto;
