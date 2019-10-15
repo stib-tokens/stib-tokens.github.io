@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    window.onload = function () {
-        $('#phi-img').addClass('move-up');
-        $('#ani-title-wrapper').addClass('fade-in');
-        $('#ani-title').addClass('move-left-in');
-        $('#ani-text').addClass('move-right-in');
-    }
+    // window.onload = function () {
+    //     $('#phi-img').addClass('move-up');
+    //     $('#ani-title-wrapper').addClass('fade-in');
+    //     $('#ani-title').addClass('move-left-in');
+    //     $('#ani-text').addClass('move-right-in');
+    // }
 
     $(window).scroll(function(event){
         var vitrihientai = window.pageYOffset;
