@@ -28,7 +28,7 @@ $(document).ready(function () {
 
     $('.n1').click(function (event) {
         event.preventDefault();
-        $('html').animate({ scrollTop: $('#tokens').offset().top - 100}, 500);
+        $('body,html').animate({ scrollTop: $('#tokens').offset().top - 100}, 500);
         if ($('#collapsibleNavId').hasClass('active')) {
             $('#collapsibleNavId').removeClass('active');
         }
@@ -38,35 +38,35 @@ $(document).ready(function () {
         if ($('#collapsibleNavId').hasClass('active')) {
             $('#collapsibleNavId').removeClass('active');
         }
-        $('html').animate({ scrollTop: $('#airdrop').offset().top - 100}, 500);
+        $('body,html').animate({ scrollTop: $('#airdrop').offset().top - 100}, 500);
     });
     $('.n3').click(function (event) {
         event.preventDefault();
         if ($('#collapsibleNavId').hasClass('active')) {
             $('#collapsibleNavId').removeClass('active');
         }
-        $('html').animate({ scrollTop: $('#roadmap').offset().top }, 500);
+        $('body,html').animate({ scrollTop: $('#roadmap').offset().top }, 500);
     });
     $('.n4').click(function (event) {
         event.preventDefault();
         if ($('#collapsibleNavId').hasClass('active')) {
             $('#collapsibleNavId').removeClass('active');
         }
-        $('html').animate({ scrollTop: $('#team').offset().top }, 500);
+        $('body,html').animate({ scrollTop: $('#team').offset().top }, 500);
     });
     $('.n5').click(function (event) {
         event.preventDefault();
         if ($('#collapsibleNavId').hasClass('active')) {
             $('#collapsibleNavId').removeClass('active');
         }
-        $('html').animate({ scrollTop: $('#unique').offset().top - 100}, 500);
+        $('body,html').animate({ scrollTop: $('#unique').offset().top - 100}, 500);
     });
     $('.n6').click(function (event) {
         event.preventDefault();
         if ($('#collapsibleNavId').hasClass('active')) {
             $('#collapsibleNavId').removeClass('active');
         }
-        $('html').animate({ scrollTop: $('#contact').offset().top }, 500);
+        $('body,html').animate({ scrollTop: $('#contact').offset().top }, 500);
     });
 
     $('.navbar-toggler').click(function(event){
