@@ -9,12 +9,12 @@ $(document).ready(function () {
     $(window).scroll(function(event){
         var vitrihientai = window.pageYOffset;
         console.log(vitrihientai);
-        if (vitrihientai > 0) {
-            $('.navbar').addClass('navbar-bg');
-        }
-        else {
-            $('.navbar').removeClass('navbar-bg');
-        }
+        // if (vitrihientai > 0) {
+        //     $('.navbar').addClass('navbar-bg');
+        // }
+        // else {
+        //     $('.navbar').removeClass('navbar-bg');
+        // }
         if(vitrihientai > $('#tokens').offset().top - 600){
             $('.title-tokens').addClass('up-active');
         }
@@ -113,9 +113,9 @@ $(document).ready(function () {
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
             ['Tokens', 'Hours per Day'],
-            ['Locked for futures', 55],
-            ['Private Sales/IEO', 15],
-            ['Airdrop/Charity', 15],
+            ['Locked for futures', 50],
+            ['Private Sales/IEO', 13.7],
+            ['Airdrop/Charity', 21.3],
             ['StiB Team', 15]
         ]);
         // Load google charts
