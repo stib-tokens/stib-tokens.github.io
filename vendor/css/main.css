@@ -1,4 +1,5 @@
 *{margin:0;padding:0;}
+
 #en-lang.active .img-lang{
     opacity: 1;
 }
@@ -1126,6 +1127,7 @@ ul.sub-menu a.nav-link {
     }
 }
 @media (max-width: 768px){
+
     .wrapper-answers .answers-p{
         width: calc(100% - 25px);
         max-width: unset;
@@ -1346,6 +1348,9 @@ ul.sub-menu a.nav-link {
     }
 }
 @media (max-width: 576px){
+    .last-li{
+        text-align: center;
+    }
     #contact .grid-1{
         -ms-grid-column: unset;
             grid-column-start: unset; 
