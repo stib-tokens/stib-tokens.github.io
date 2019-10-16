@@ -138,7 +138,7 @@ $(document).ready(function () {
     console.log(langChoice);
 
     google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(() => drawChart());
     
     $(window).resize(function () {
         google.charts.setOnLoadCallback(drawChart);
