@@ -111,23 +111,24 @@ $(document).ready(function () {
         'chartArea.left': 0,
         'chartArea.top': 0,
         'legend': {
-            position: $(window).width() > 576 ? 'right': 'bottom',
+            position: 'labeled',
             textStyle: {
                 color: '#fff',
                 fontSize: 12,
             },
-            alignment: 'center'
+            alignment: 'center',
         },
         'tooltip': {
-            textStyle: {
-                fontSize: 11
-            }
+            trigger: 'none'
+            // textStyle: {
+            //     fontSize: 11
+            // }
         }
     };
     // Draw the chart and set the chart values
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Tokens', 'Hours per Day'],
+            ['Tokens', 'Tokens part'],
             ['Locked for futures', 50],
             ['Private Sales/IEO', 13.7],
             ['Airdrop/Charity', 21.3],
