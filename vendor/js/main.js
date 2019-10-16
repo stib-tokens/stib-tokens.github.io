@@ -186,13 +186,13 @@ $(document).ready(function () {
 		}
     });
 
-    
-    // $('.show-current-lang').click(function(event){
-    //     event.preventDefault();
-    //     $('.lang-choice').toggleClass('active');
-    //     $('.img-lang-current').toggleClass('active');
-    // })
-    // for (let index = 0; index < $('.lang-select').length; index++) {
+
+    $('.show-current-lang').click(function(event){
+        event.preventDefault();
+        $('.lang-choice').toggleClass('active');
+        $('.img-lang-current').toggleClass('active');
+    })
+    for (let index = 0; index < $('.lang-select').length; index++) {
         
-    // }
+    }
 })
