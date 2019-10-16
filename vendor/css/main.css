@@ -1,5 +1,69 @@
 *{margin:0;padding:0;}
+#en-lang.active .img-lang{
+    opacity: 1;
+}
+#en-lang.active{
+    opacity: .6;
+}
+.show-current-lang span {
+    cursor: pointer;
+}
+.img-lang{
+    width: 10px;
+    height: 10px;
+    margin-left: 5px;
+    display: inline-block;
+    opacity: 0;
+}
+.img-lang-current{
+    -webkit-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    opacity: 1;
+}
+ul.lang-choice li:hover .img-lang{
+    opacity: 1;
+}
+.img-lang-current.active{
+    -webkit-transform: rotate(0);
+        -ms-transform: rotate(0);
+            transform: rotate(0);
+}
+.lang-choice{
+    position: absolute;
+    top: 145%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    padding: 5px 0;
+    width: 85px;
+    text-align: center;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 3px 3px 30px #e0e0e0;
+            box-shadow: 3px 3px 30px #e0e0e0;
+    opacity: 0;
+    visibility: hidden;
+}
+.lang-choice.active{
+    opacity: 1;
+    visibility: visible;
+}
 
+ul.lang-choice li {
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+ul.lang-choice li:hover span {
+    opacity: .6;
+}
+
+.lang-choice:before {content: '';position: absolute;border-left: 6px solid transparent;border-right: 6px solid transparent;border-bottom: 6px solid #fff;top: -6px;left: 50%;-webkit-transform: translateX(-50%);-ms-transform: translateX(-50%);transform: translateX(-50%);}
 .wrapper-pie-chart{
     display: -webkit-box;
     display: -ms-flexbox;
@@ -320,6 +384,8 @@ span.answers {
 
 .answers-p a {
     color: #f38320;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
     transition: .3s;
 }
 
@@ -833,9 +899,13 @@ a.link_ToS:hover, a.link_Pri:hover {
 .background-banner .wrapper-img{
     max-width: 1100px;
 }
+
 .navbar-brand{
-    width: 100px;
     display: block;
+}
+.navbar-brand > a{
+    width: 100px;
+    display: inline-block;
     line-height: 0;
 }
 .navbar{
@@ -855,6 +925,14 @@ a.link_ToS:hover, a.link_Pri:hover {
     -o-transition: .3s;
     transition: .3s;
     border-bottom: 1px solid #cacaca4d;
+}
+.dual-lang{
+    display: inline-block;
+    width: 40px;
+    font-size: 12px;
+    font-weight: bold;
+    top: 11px;
+    left: 6px;
 }
 /* .navbar.navbar-bg{
     background: #f5f5f5;
@@ -1239,8 +1317,12 @@ ul.sub-menu a.nav-link {
 }
 @media (max-width: 600px){
     .modal-content .wrapper-img.img-funds-modal{
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
     }
     .title-philosophy h1{
         font-size: 30px;

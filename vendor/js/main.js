@@ -184,5 +184,15 @@ $(document).ready(function () {
 			// 	items:1
 			// },
 		}
-	})
+    });
+
+    
+    // $('.show-current-lang').click(function(event){
+    //     event.preventDefault();
+    //     $('.lang-choice').toggleClass('active');
+    //     $('.img-lang-current').toggleClass('active');
+    // })
+    // for (let index = 0; index < $('.lang-select').length; index++) {
+        
+    // }
 })

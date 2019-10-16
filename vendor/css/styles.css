@@ -247,31 +247,6 @@ ul{
 .d-none{
     display: none;
 }
-a.lang {
-    padding: 15px;
-    background: #fff;
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-    color: #333;
-    border: 1px solid #5252522b;
-    border-right: none;
-}
-
-a.lang:hover {
-    color: #f38320;
-}
-
-a.lang-active {
-    color: #f38320!important;
-}
-a.eng{border-bottom: none!important;}
-.dual-lang{
-	position: fixed;
-	top: 10%;
-	right: 0;
-	z-index: 1000;
-}
 .three-dots{
     position: absolute;
     width: 6px;
