@@ -1,27 +1,7 @@
 $(document).ready(function (){
     var btnEng = document.getElementById('en-lang');
     var btnVn = document.getElementById('vn-lang');
-    $('.show-current-lang').click(function(event){
-        event.preventDefault();
-        $('.lang-choice').toggleClass('active');
-        $('.img-lang-current').toggleClass('active');
-        // console.log($('.show-current-lang span').text());
-    })
-    for (let index = 0; index < $('.lang-select').length; index++) {
-        $('.lang-select').eq(index).click(function(event){
-            event.preventDefault();
-            // style change
-            if($('.lang-choice').hasClass('active')){$('.lang-choice').removeClass('active');}
-            if($('.img-lang-current').hasClass('active')){$('.lang-choice').removeClass('active');}
-
-            for (let j = 0; j < $('.lang-select').length; j++) {
-                if($('.lang-select').eq(j).hasClass('active')){ $('.lang-select').removeClass('active') }
-            }
-            $('.lang-select').eq(index).addClass('active');
-
-            $('.show-current-lang span').text($('.lang-select').eq(index).text());
-        });
-    }
+    
     const langEng = [
         // banner [0]
         {
