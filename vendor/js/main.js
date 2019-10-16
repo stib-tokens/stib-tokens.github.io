@@ -130,7 +130,7 @@ $(document).ready(function () {
                 color: '#f38320',
                 fontSize: 16,
             },
-            'fontSize': 16,
+            'fontSize': 14,
             'chartArea.left': 0,
             'chartArea.top': 0,
             'legend': {
