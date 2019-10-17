@@ -154,7 +154,7 @@ ul.lang-choice li:hover span {
 }
 
 .wrapper-btn-download a:hover {
-    background: #fff;
+    background: #333;
     color: #f38320;
 }
 
@@ -343,9 +343,9 @@ table.table tr {
     transition: .3s;
 }
 
-table.table tr:hover {
+/* table.table tr:hover {
     background: #f38320;
-}
+} */
 
 table.table tr td, table.table tr th {text-align: center;border-right: 1px solid #ffffff;}
 .table-name{

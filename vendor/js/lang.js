@@ -1,6 +1,136 @@
 $(document).ready(function (){
-    var btnEng = document.getElementById('en-lang');
-    var btnVn = document.getElementById('vn-lang');
+    // set default language
+    var langChoice;
+    $.get("https://ipinfo.io", function(response) {
+        langChoice = localStorage.getItem("language");
+        if(langChoice == null || langChoice == undefined){
+            console.log("nulllll");
+            if(response.country == "VN"){
+                localStorage.setItem("language", "VN");
+            }
+            else{
+                localStorage.setItem("language", "EN");
+            }
+        }
+        langChoice = localStorage.getItem("language");
+        console.log(langChoice);// work!
+        if(langChoice!==null){
+            if(langChoice == "EN"){
+                $('.lang-select').eq(0).addClass('active'); // set default
+            }
+            else{
+                $('.lang-select').eq(1).addClass('active'); // set default
+            }
+        }
+        $('.show-current-lang span').text(langChoice); // set default
+        clickContent();
+        console.log(langChoice); // work!
+        loadContent();
+        
+    }, "jsonp")
+    .fail(function(){
+        // console.log("1111111111111111111111111"); // work!
+        localStorage.setItem("language", "EN");
+        langChoice = localStorage.getItem("language");
+        $('.lang-select').eq(0).addClass('active'); // set default
+        clickContent();
+        console.log(langChoice); // work!
+        loadContent();
+    })
+
+    function clickContent(){
+        $('.show-current-lang').click(function(event){
+            event.preventDefault();
+            $('.lang-choice').toggleClass('active');
+            $('.img-lang-current').toggleClass('active');
+        })
+        // click ul
+        for (let index = 0; index < $('.lang-select').length; index++) {
+            $('.lang-select').eq(index).click(function(event){
+                event.preventDefault();
+                // style change
+                if($('.lang-choice').hasClass('active')){$('.lang-choice').removeClass('active');}
+                if($('.img-lang-current').hasClass('active')){$('.lang-choice').removeClass('active');}
+    
+                for (let j = 0; j < $('.lang-select').length; j++) {
+                    $('.lang-select').eq(j).removeClass('active');
+                }
+                $('.lang-select').eq(index).addClass('active');
+
+                if(index == 0){ // EN
+                    localStorage.setItem("language", "EN");
+                    langChoice = localStorage.getItem("language");
+                    switchEN();
+                }
+                else if(index == 1){ // VN
+                    localStorage.setItem("language", "VN");
+                    langChoice = localStorage.getItem("language");
+                    switchVN();
+                }
+                else{
+                    localStorage.setItem("language", "EN");
+                    langChoice = localStorage.getItem("language");
+                    switchEN();
+                }
+                langChoice = localStorage.getItem("language");
+                $('.show-current-lang span').text(langChoice);
+            });
+        }
+    }
+    function loadContent(){
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(() => drawChart());
+        
+        $(window).resize(function () {
+            google.charts.setOnLoadCallback(drawChart);
+        })
+    
+        var options = {
+            'chartArea': {
+                width: '94%' // width inside chart !important 
+            },
+            'width': '100%',
+            'height': '100%',
+            'backgroundColor': 'transparent',
+            'titleTextStyle': {
+                color: '#f38320',
+                fontSize: 16,
+            },
+            'fontSize': 14,
+            'chartArea.left': 0,
+            'chartArea.top': 0,
+            'legend': {
+                position: 'labeled',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 12,
+                },
+                alignment: 'center',
+            },
+            'tooltip': {
+                trigger: 'none'
+                // textStyle: {
+                //     fontSize: 11
+                // }
+            }
+        };
+        // Draw the chart and set the chart values
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Tokens', 'Tokens part'],
+                ['Locked for futures', 50],
+                ['Private Sales/IEO', 13.7],
+                ['Airdrop/Charity', 21.3],
+                ['StiB Team', 15]
+            ]);
+            // Load google charts
+            var chart = new google.visualization.PieChart(document.getElementById('piechart-tokens'));
+            chart.draw(data, options);
+        }
+    
+        ///////////////////////////////////////////////
+    }
+
     
     const langEng = [
         // banner [0]
@@ -22,10 +152,6 @@ $(document).ready(function (){
         {
             "description": "'sti'is our utility token within StiB’s ecosystem and token holders will benefit from projects, services and products in the future.",
 
-            // "title1col1": "Amount of Sti tokens bought",
-            // "title1col2": "Monthly bonus (Stis)",
-            // "title1col3": "	Total bonus in 6 months (Stis)",
-
             "text1": "Token Name: sti",
             "text2": "Token Type: ERC-20",
             "text3": "Token Supply: 8,000,000,000 STIs",
@@ -41,43 +167,6 @@ $(document).ready(function (){
             "text23": " Date - Listing on TBD",
             "title24": "Initial Circulating Supply:",
             "text24": " 3.7% of total Supply",
-
-            // "title3col1row1": "Timeline",
-            // "title3col1row3": "By 2022",
-            // "title3col1row4": "By 2024",
-            // "title3col1row5": "Beyond 2025",
-
-            // "title3col2row1": "Phases",
-            // "title3col2row2": "StiB P2P = Trades+Loans",
-
-            // "title3col3row1": "Team",
-
-            // "title3col4row1": "Global Reach",
-
-
-            // "title4col1row1": "What we offer",
-            // "title4col1row2": "Commissions Free",
-            // "title4col1row3": "Legal Protections",
-            // "title4col1row4": "Share profits to all",
-            // "title4col1row5": "Unbanked & Financial Inclusions",
-
-            // "title4col3row1": "Others",
-            // "title4col3row3": "Nothing",
-            // "title4col3row4": "Airdrops",
-            // "title4col3row5": "Some",
-
-            // "title4col4row1": "They offer",
-            // "title4col4row2": "High Fees",
-            // "title4col4row3": "You’re on your own",
-            // "title4col4row4": "Profits not for you",
-            // "title4col4row5 ": "PR only no vision",
-        },
-        // monetize [3]
-        {
-            "title1": "Use of funds",
-            "title2": "How StiB Monetize ?",
-            "text1": "THROUGH StiB RESERVES WITH INSTANT SETTLEMENTS ON FIATS-CRYPTOS & CRYPTOS-CRYPTOS FOR BOTH TRADING + LENDING.",
-            "text2": "$10-$100 ON EACH VERIFIED ACCOUNT WITH 10-100 ETH (1-10 BTC EARLY NEXT YEAR)\nTOTAL WILL BE $6M AT THE IEO PRICE OR 15% TOTAL SUPPLY."
         }
     ];
     // ////////////////////////////////////////////////////////////
@@ -85,77 +174,37 @@ $(document).ready(function (){
         // banner [0]
         {
             "title": 'HƯỚNG ĐI CỦA StiB',
-            "description": "Chúng tôi hướng đến những điều tích cực!",
+            "description": "We focus on positive side of things!",
             "tooltip": "Xem ảnh lớn"
         },
         // menu[1]
         {
-            "title1": "HƯỚNG ĐI",
-            "title2": "StiB TOKENS",
-            "title3": "TẠO LỢI NHUẬN"
+            "title1": "StiB TOKENS",
+            "title2": "BẢNG AIRDROP",
+            "title3": "LỘ TRÌNH",
+            "title4": "THÀNH VIÊN",
+            "title5": "ĐIỂM KHÁC BIỆT",
+            "title6": "LIÊN HỆ"
         },
         // tokens [2]
         {
-            "tab1": "Kế hoạch Airdrop",
-            "tab2": "Token Tiện Ích",
-            "tab3": "Kế hoạch của StiB",
-            "tab4": "Nét độc nhất của StiB",
+            "description": "'sti'is our utility token within StiB’s ecosystem and token holders will benefit from projects, services and products in the future.",
 
-            "title1col1": "Số lượng Token Sti bán ra",
-            "title1col2": "Thưởng mỗi tháng (Stis)",
-            "title1col3": "Tổng thưởng trong 6 tháng (Stis)",
+            "text1": "Tên Token: sti",
+            "text2": "Loại Token: ERC-20",
+            "text3": "Tổng Token: 8,000,000,000 STIs",
+            "text4": "Vốn huy động: $5,480,000",
+            "text5": "Market Cap at Circulation: $40M",
+            "text6": "Token Price",
 
-            "title2col1row1": "Tên Token",
-            "title2col1row2": "Loại Token",
-            "title2col1row3": "Giá Token",
-            "title2col1row4": "Tổng lượng Token tối đa",
-            "title2col1row5": "Vốn huy động",
-            "title2col1row6": "Huy động vốn cá nhân",
-            "title2col1row7": "Ngày bán ra",
-            "title2col1row8": "Ngày lên sàn giao dịch",
-            "title2col1row9": "Số lượng trả ban đầu",
-            
-            "title2col2row6": "Quý 4 2019 - Bắt đầu huy động vốn\nQuý 1 2020 - Kết thúc huy động vốn",
-            "title2col2row7": "Chưa quyết định ngày",
-            "title2col2row8": "Chưa quyết định ngày",
-            "title2col2row9": "1.5% trên tổng vốn đầu tư",
-
-            "title3col1row1": "Mốc thời gian",
-            "title3col1row3": "Từ 2022",
-            "title3col1row4": "Từ 2024",
-            "title3col1row5": "Sau 2025",
-
-            "title3col2row1": "Giai đoạn",
-            "title3col2row2": "StiB P2P = Giao dịch+Vay mượn",
-
-            "title3col3row1": "Nhóm",
-
-            "title3col4row1": "Người dùng",
-
-
-            "title4col1row1": "StiB có",
-            "title4col1row2": "Không phí giao dịch",
-            "title4col1row3": "Bảo vệ pháp lý",
-            "title4col1row4": "Chia sẻ lợi nhuận",
-            "title4col1row5": "Không có ngân hàng & Không tiếp cận kênh tài chính",
-
-            "title4col3row1": "Nơi khác",
-            "title4col3row3": "Không",
-            "title4col3row4": "Tiền khuyến mãi",
-            "title4col3row5": "Có thể",
-
-            "title4col4row1": "Họ có",
-            "title4col4row2": "Phí cao",
-            "title4col4row3": "Tự làm tự chịu",
-            "title4col4row4": "Không chia sẻ",
-            "title4col4row5": "Quảng cáo không rõ ràng",
-        },
-        // monetize [3]
-        {
-            "title1": "Nguồn vốn sử dụng",
-            "title2": "StiB tạo lợi nhuận như thế nào ?",
-            "text1": "VỚI QUỸ DỰ TRỮ StiB RESERVES, KHÁCH HÀNG CÓ THỂ GIAO DỊCH HOẶC VAY MƯỢN NGAY VỚI CÔNG TY NHANH CHÓNG BẰNG TIỀN MẶT HOẶC TIỀN ĐIỆN TỬ ",
-            "text2": "$10-$100 với mỗi tài khoản đã được xác minh 10-100 ETH (1-10 BTC vào đầu năm sau)\nTổng vốn sẽ là $6M tại sàn IEO hoặc 15% tổng vốn đầu tư."
+            "title21": "Private Sales:",
+            "text21": " Q4 2019 - Seed round to reach soft Cap\nQ1 2020 - Pre-listing round to reach hard Cap",
+            "title22": "Public sale Date:",
+            "text22": " Date - Launch on TBD",
+            "title23": "Primary Exchange Listing:",
+            "text23": " Date - Listing on TBD",
+            "title24": "Initial Circulating Supply:",
+            "text24": " 3.7% of total Supply",
         }
     ];
 
@@ -319,4 +368,14 @@ $(document).ready(function (){
     //     document.getElementById('title-funds').innerHTML = langVn[3].title1;
     //     document.getElementById('content-tokens').innerHTML = langVn[3].text2;
     // });
+
+
+
+
+    function switchEN(){
+        // console.log("da chuyen sang" + langChoice); // work!
+    }
+    function switchVN(){
+        // console.log("da chuyen sang" + langChoice); // work!
+    }
 })
