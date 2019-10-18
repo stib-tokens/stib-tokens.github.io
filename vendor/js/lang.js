@@ -17,9 +17,11 @@ $(document).ready(function (){
         if(langChoice!==null){
             if(langChoice == "EN"){
                 $('.lang-select').eq(0).addClass('active'); // set default
+                switchLang(langEng);
             }
             else{
                 $('.lang-select').eq(1).addClass('active'); // set default
+                switchLang(langVn);
             }
         }
         $('.show-current-lang span').text(langChoice); // set default
@@ -30,6 +32,8 @@ $(document).ready(function (){
     }, "jsonp")
     .fail(function(){
         // console.log("1111111111111111111111111"); // work!
+        alert("Your browers is not supported for other languages!");
+        $('.show-current-lang span').text("EN");
         localStorage.setItem("language", "EN");
         langChoice = localStorage.getItem("language");
         $('.lang-select').eq(0).addClass('active'); // set default
@@ -60,17 +64,19 @@ $(document).ready(function (){
                 if(index == 0){ // EN
                     localStorage.setItem("language", "EN");
                     langChoice = localStorage.getItem("language");
-                    switchEN();
+                    location.reload();
+                    // switchLang(langEng);
                 }
                 else if(index == 1){ // VN
                     localStorage.setItem("language", "VN");
                     langChoice = localStorage.getItem("language");
-                    switchVN();
+                    location.reload();
+                    // switchLang(langVn);
                 }
                 else{
                     localStorage.setItem("language", "EN");
                     langChoice = localStorage.getItem("language");
-                    switchEN();
+                    switchLang(langEng);
                 }
                 langChoice = localStorage.getItem("language");
                 $('.show-current-lang span').text(langChoice);
@@ -118,10 +124,10 @@ $(document).ready(function (){
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Tokens', 'Tokens part'],
-                ['Locked for futures', 50],
-                ['Private Sales/IEO', 13.7],
-                ['Airdrop/Charity', 21.3],
-                ['StiB Team', 15]
+                [langChoice == 'VN' ? 'Vốn tương lai': 'Locked for futures', 50],
+                [langChoice == 'VN' ? 'Huy động vốn': 'Private Sales/IEO', 13.7],
+                [langChoice == 'VN' ? 'Airdrop/Từ thiện': 'Airdrop/Charity', 21.3],
+                [langChoice == 'VN' ? 'Đội StiB': 'StiB Team', 15]
             ]);
             // Load google charts
             var chart = new google.visualization.PieChart(document.getElementById('piechart-tokens'));
@@ -160,13 +166,33 @@ $(document).ready(function (){
             "text6": "Token Price",
 
             "title21": "Private Sales:",
-            "text21": " Q4 2019 - Seed round to reach soft Cap\nQ1 2020 - Pre-listing round to reach hard Cap",
+            "text21": " Q4 2019 - Seed round soft Cap ($1,000,000)\nQ1 2020 - Pre-listing soft Cap ($3,480,000)",
             "title22": "Public sale Date:",
-            "text22": " Date - Launch on TBD",
+            "text22": " Date - October 15",
             "title23": "Primary Exchange Listing:",
             "text23": " Date - Listing on TBD",
             "title24": "Initial Circulating Supply:",
             "text24": " 3.7% of total Supply",
+        },
+        // intro [3]
+        {
+            "ques1": "WHO WE ARE?",
+            "ques2": "StiB TOKENS?",
+            "ques3": "HOW StiB MONETIZES?",
+
+            "ans1": "We decentralize and leave no one behind!",
+            "ans2": "Using a smart queue so StiB token holders can each earn a chance at investing instead of Lottery or gaming to be who has the fastest finger or bot.",
+            "ans3": "Through StiB Reserves with instant settlements on fiats-cryptos & Cryptos-Cryptos for both Trading + Lending."
+        },
+        // download[4]
+        {
+            "title": "StiB P2P is available now for trading/Lending on iOS and Android!",
+            "button": "Try it now on StiB P2P"
+        },
+        // airdrop[5]
+        {
+            "title": "Airdrop Scheme",
+            
         }
     ];
     // ////////////////////////////////////////////////////////////
@@ -188,194 +214,60 @@ $(document).ready(function (){
         },
         // tokens [2]
         {
-            "description": "'sti'is our utility token within StiB’s ecosystem and token holders will benefit from projects, services and products in the future.",
+            "description": "'sti' là tên của Token trong hệ sinh thái của StiB và người giữ token sẽ có quyền lợi trong nghiên cứu, dịch vụ và các sản phẩm trong tương lai.",
 
             "text1": "Tên Token: sti",
             "text2": "Loại Token: ERC-20",
             "text3": "Tổng Token: 8,000,000,000 STIs",
             "text4": "Vốn huy động: $5,480,000",
-            "text5": "Market Cap at Circulation: $40M",
-            "text6": "Token Price",
+            "text5": "Tổng giá tr: $40M",
+            "text6": "GIÁ TOKENS",
 
-            "title21": "Private Sales:",
-            "text21": " Q4 2019 - Seed round to reach soft Cap\nQ1 2020 - Pre-listing round to reach hard Cap",
-            "title22": "Public sale Date:",
-            "text22": " Date - Launch on TBD",
-            "title23": "Primary Exchange Listing:",
-            "text23": " Date - Listing on TBD",
-            "title24": "Initial Circulating Supply:",
-            "text24": " 3.7% of total Supply",
-        }
+            "title21": "Huy động vốn:",
+            "text21": " Quý 4 2019 - Bắt đầu huy động vốn ($1,000,000) \n Quý 1 2020 - Kết thúc huy động vốn ($3,480,000)",
+            "title22": "Ngày bán ra:",
+            "text22": " Date - Ngày 15 tháng 10",
+            "title23": "Ngày lên sàn giao dịch:",
+            "text23": " Chưa có",
+            "title24": "Số lượng trả ban đầu:",
+            "text24": " 3.7% trên tổng vốn đầu tư",
+        },
+
     ];
 
-    //////////////////////////////////////////////////////////////
-    // var switchLang = document.getElementsByClassName('lang');
-    
-
-    // btnEng.addEventListener('click', function(event){
-    //     event.preventDefault();
-    //     for (let index = 0; index < switchLang.length; index++) {
-    //         switchLang[index].classList.remove('lang-active');
-    //     }
-    //     btnEng.classList.add('lang-active');
-
-    //     // banner [0]
-    //     document.getElementById('ani-title').innerHTML = langEng[0].title;
-    //     document.getElementById('ani-text').innerHTML = langEng[0].description;
-    //     document.getElementsByClassName('tooltip-phi')[0].innerHTML = langEng[0].tooltip;
-
-    //     // menu [1]
-    //     document.getElementById('n1').innerHTML = langEng[1].title1;
-    //     document.getElementById('n2').innerHTML = langEng[1].title2;
-    //     document.getElementById('n3').innerHTML = langEng[1].title3;
-
-    //     // tokens [2]
-    //     document.getElementById('tab1').innerHTML = langEng[2].tab1;
-    //     document.getElementById('tab2').innerHTML = langEng[2].tab2;
-    //     document.getElementById('tab3').innerHTML = langEng[2].tab3;
-    //     document.getElementById('tab4').innerHTML = langEng[2].tab4;
-
-    //     document.getElementById('title1col1').innerHTML = langEng[2].title1col1;
-    //     document.getElementById('title1col2').innerHTML = langEng[2].title1col2;
-    //     document.getElementById('title1col3').innerHTML = langEng[2].title1col3;
-
-    //     document.getElementById('title2col1row1').innerHTML = langEng[2].title2col1row1;
-    //     document.getElementById('title2col1row2').innerHTML = langEng[2].title2col1row2;
-    //     document.getElementById('title2col1row3').innerHTML = langEng[2].title2col1row3;
-    //     document.getElementById('title2col1row4').innerHTML = langEng[2].title2col1row4;
-    //     document.getElementById('title2col1row5').innerHTML = langEng[2].title2col1row5;
-    //     document.getElementById('title2col1row6').innerHTML = langEng[2].title2col1row6;
-    //     document.getElementById('title2col1row7').innerHTML = langEng[2].title2col1row7;
-    //     document.getElementById('title2col1row8').innerHTML = langEng[2].title2col1row8;
-    //     document.getElementById('title2col1row9').innerHTML = langEng[2].title2col1row9;
-
-    //     document.getElementById('title2col2row6').innerHTML = langEng[2].title2col2row6;
-    //     document.getElementById('title2col2row7').innerHTML = langEng[2].title2col2row7;
-    //     document.getElementById('title2col2row8').innerHTML = langEng[2].title2col2row8;
-    //     document.getElementById('title2col2row9').innerHTML = langEng[2].title2col2row9;
-
-    //     document.getElementById('title3col1row1').innerHTML = langEng[2].title3col1row1;
-    //     document.getElementById('title3col1row3').innerHTML = langEng[2].title3col1row3;
-    //     document.getElementById('title3col1row4').innerHTML = langEng[2].title3col1row4;
-    //     document.getElementById('title3col1row5').innerHTML = langEng[2].title3col1row5;
-        
-    //     document.getElementById('title3col2row1').innerHTML = langEng[2].title3col2row1;
-    //     document.getElementById('title3col2row2').innerHTML = langEng[2].title3col2row2;
-
-    //     document.getElementById('title3col3row1').innerHTML = langEng[2].title3col3row1;
-
-    //     document.getElementById('title3col4row1').innerHTML = langEng[2].title3col4row1;
-
-    //     document.getElementById('title4col1row1').innerHTML = langEng[2].title4col1row1;
-    //     document.getElementById('title4col1row2').innerHTML = langEng[2].title4col1row2;
-    //     document.getElementById('title4col1row3').innerHTML = langEng[2].title4col1row3;
-    //     document.getElementById('title4col1row4').innerHTML = langEng[2].title4col1row4;
-    //     document.getElementById('title4col1row5').innerHTML = langEng[2].title4col1row5;
-
-    //     document.getElementById('title4col3row1').innerHTML = langEng[2].title4col3row1;
-    //     document.getElementById('title4col3row3').innerHTML = langEng[2].title4col3row3;
-    //     document.getElementById('title4col3row4').innerHTML = langEng[2].title4col3row4;
-    //     document.getElementById('title4col3row5').innerHTML = langEng[2].title4col3row5;
-
-    //     document.getElementById('title4col4row1').innerHTML = langEng[2].title4col4row1;
-    //     document.getElementById('title4col4row2').innerHTML = langEng[2].title4col4row2;
-    //     document.getElementById('title4col4row3').innerHTML = langEng[2].title4col4row3;
-    //     document.getElementById('title4col4row4').innerHTML = langEng[2].title4col4row4;
-    //     document.getElementById('title4col4row5').innerHTML = langEng[2].title4col4row5;
-
-    //     // monetize [3]
-    //     document.getElementById('title-monetize').innerHTML = langEng[3].title2;
-    //     document.getElementById('content-monetize').innerHTML = langEng[3].text1;
-    //     document.getElementById('title-funds').innerHTML = langEng[3].title1;
-    //     document.getElementById('content-tokens').innerHTML = langEng[3].text2;
-
-    // });
-
-    // btnVn.addEventListener('click', function(event){
-    //     event.preventDefault();
-    //     for (let index = 0; index < switchLang.length; index++) {
-    //         switchLang[index].classList.remove('lang-active');
-    //     }
-    //     btnVn.classList.add('lang-active');
-        
-    //     // banner [0]
-    //     document.getElementById('ani-title').innerHTML = langVn[0].title;
-    //     document.getElementById('ani-text').innerHTML = langVn[0].description;
-    //     document.getElementsByClassName('tooltip-phi')[0].innerHTML = langVn[0].tooltip;
-
-    //     // menu [1]
-    //     document.getElementById('n1').innerHTML = langVn[1].title1;
-    //     document.getElementById('n2').innerHTML = langVn[1].title2;
-    //     document.getElementById('n3').innerHTML = langVn[1].title3;
-
-    //     // tokens [2]
-    //     document.getElementById('tab1').innerHTML = langVn[2].tab1;
-    //     document.getElementById('tab2').innerHTML = langVn[2].tab2;
-    //     document.getElementById('tab3').innerHTML = langVn[2].tab3;
-    //     document.getElementById('tab4').innerHTML = langVn[2].tab4;
-
-    //     document.getElementById('title1col1').innerHTML = langVn[2].title1col1;
-    //     document.getElementById('title1col2').innerHTML = langVn[2].title1col2;
-    //     document.getElementById('title1col3').innerHTML = langVn[2].title1col3;
-
-    //     document.getElementById('title2col1row1').innerHTML = langVn[2].title2col1row1;
-    //     document.getElementById('title2col1row2').innerHTML = langVn[2].title2col1row2;
-    //     document.getElementById('title2col1row3').innerHTML = langVn[2].title2col1row3;
-    //     document.getElementById('title2col1row4').innerHTML = langVn[2].title2col1row4;
-    //     document.getElementById('title2col1row5').innerHTML = langVn[2].title2col1row5;
-    //     document.getElementById('title2col1row6').innerHTML = langVn[2].title2col1row6;
-    //     document.getElementById('title2col1row7').innerHTML = langVn[2].title2col1row7;
-    //     document.getElementById('title2col1row8').innerHTML = langVn[2].title2col1row8;
-    //     document.getElementById('title2col1row9').innerHTML = langVn[2].title2col1row9;
-
-    //     document.getElementById('title2col2row6').innerHTML = langVn[2].title2col2row6;
-    //     document.getElementById('title2col2row7').innerHTML = langVn[2].title2col2row7;
-    //     document.getElementById('title2col2row8').innerHTML = langVn[2].title2col2row8;
-    //     document.getElementById('title2col2row9').innerHTML = langVn[2].title2col2row9;
-
-    //     document.getElementById('title3col1row1').innerHTML = langVn[2].title3col1row1;
-    //     document.getElementById('title3col1row3').innerHTML = langVn[2].title3col1row3;
-    //     document.getElementById('title3col1row4').innerHTML = langVn[2].title3col1row4;
-    //     document.getElementById('title3col1row5').innerHTML = langVn[2].title3col1row5;
-        
-    //     document.getElementById('title3col2row1').innerHTML = langVn[2].title3col2row1;
-    //     document.getElementById('title3col2row2').innerHTML = langVn[2].title3col2row2;
-
-    //     document.getElementById('title3col3row1').innerHTML = langVn[2].title3col3row1;
-
-    //     document.getElementById('title3col4row1').innerHTML = langVn[2].title3col4row1;
-
-    //     document.getElementById('title4col1row1').innerHTML = langVn[2].title4col1row1;
-    //     document.getElementById('title4col1row2').innerHTML = langVn[2].title4col1row2;
-    //     document.getElementById('title4col1row3').innerHTML = langVn[2].title4col1row3;
-    //     document.getElementById('title4col1row4').innerHTML = langVn[2].title4col1row4;
-    //     document.getElementById('title4col1row5').innerHTML = langVn[2].title4col1row5;
-
-    //     document.getElementById('title4col3row1').innerHTML = langVn[2].title4col3row1;
-    //     document.getElementById('title4col3row3').innerHTML = langVn[2].title4col3row3;
-    //     document.getElementById('title4col3row4').innerHTML = langVn[2].title4col3row4;
-    //     document.getElementById('title4col3row5').innerHTML = langVn[2].title4col3row5;
-
-    //     document.getElementById('title4col4row1').innerHTML = langVn[2].title4col4row1;
-    //     document.getElementById('title4col4row2').innerHTML = langVn[2].title4col4row2;
-    //     document.getElementById('title4col4row3').innerHTML = langVn[2].title4col4row3;
-    //     document.getElementById('title4col4row4').innerHTML = langVn[2].title4col4row4;
-    //     document.getElementById('title4col4row5').innerHTML = langVn[2].title4col4row5;
-
-    //     // monetize [3]
-    //     document.getElementById('title-monetize').innerHTML = langVn[3].title2;
-    //     document.getElementById('content-monetize').innerHTML = langVn[3].text1;
-    //     document.getElementById('title-funds').innerHTML = langVn[3].title1;
-    //     document.getElementById('content-tokens').innerHTML = langVn[3].text2;
-    // });
-
-
-
-
-    function switchEN(){
+    function switchLang(lang){
         // console.log("da chuyen sang" + langChoice); // work!
-    }
-    function switchVN(){
-        // console.log("da chuyen sang" + langChoice); // work!
+        // banner [0]
+        $('#ani-title').text(lang[0].title);
+        $('#ani-text').text(lang[0].description);
+        $('.tooltip-phi').text(lang[0].tooltip);
+        // menu[1]
+        $('.n1').text(lang[1].title1);
+        $('.n2').text(lang[1].title2);
+        $('.n3').text(lang[1].title3);
+        $('.n4').text(lang[1].title4);
+        $('.n5').text(lang[1].title5);
+        $('.n6').text(lang[1].title6);
+        // tokens [2]
+        $('#tokens .description p').text(lang[2].description);
+        $('#tokens .grid-1 .token-utility li:nth-child(1) span').text(lang[2].text1);
+        $('#tokens .grid-1 .token-utility li:nth-child(2) span').text(lang[2].text2);
+        $('#tokens .grid-1 .token-utility li:nth-child(3) span').text(lang[2].text3);
+        $('#tokens .grid-1 .token-utility li:nth-child(4) span').text(lang[2].text4);
+        $('#tokens .grid-1 .token-utility li:nth-child(5) span').text(lang[2].text5);
+        $('#tokens .grid-1 .token-utility li:nth-child(6) span.utility-price-title').text(lang[2].text6);
+
+        $('#tokens .grid-2 .token-utility li:nth-child(1) span.utility-title').text(lang[2].title21);
+        $('#tokens .grid-2 .token-utility li:nth-child(1) span:last-child').text(lang[2].text21);
+        $('#tokens .grid-2 .token-utility li:nth-child(1) span:last-child').html($('#tokens .grid-2 .token-utility li:nth-child(1) span:last-child').html().replace(/\n/g,'<br/>'));
+
+        $('#tokens .grid-2 .token-utility li:nth-child(2) span.utility-title').text(lang[2].title22);
+        $('#tokens .grid-2 .token-utility li:nth-child(2) span:last-child').text(lang[2].text22);
+
+        $('#tokens .grid-2 .token-utility li:nth-child(3) span.utility-title').text(lang[2].title23);
+        $('#tokens .grid-2 .token-utility li:nth-child(3) span:last-child').text(lang[2].text23);
+
+        $('#tokens .grid-2 .token-utility li:nth-child(4) span.utility-title').text(lang[2].title24);
+        $('#tokens .grid-2 .token-utility li:nth-child(4) span:last-child').text(lang[2].text24);
     }
 })
