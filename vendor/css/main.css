@@ -1,4 +1,12 @@
 *{margin:0;padding:0;}
+.img-arrow-right{
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    margin-bottom: -3px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
 .hightlight{
     background: #ffcfa5;
     color: #191919;
@@ -24,7 +32,7 @@
     background: transparent;
     display: block;
     margin: 0 auto;
-    width: 200px;
+    width: 235px;
     text-align: center;
     border-radius: 5px;
 }
@@ -128,7 +136,7 @@ ul.lang-choice li:hover span {
     text-align: center;
     color: #f38320;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #download {
@@ -425,7 +433,7 @@ span.answers {
 
 ul.wrapper-questions li h3 {
     font-size: 20px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-weight: 400;
     letter-spacing: 2px;
     background: #333;
@@ -539,6 +547,7 @@ span.utility-title {
 }
 .title-unique {
     background: #f5f5f5;
+    text-transform: capitalize!important;
     -webkit-box-shadow: 8px 4px 70px #a5a5a554;
             box-shadow: 8px 4px 70px #a5a5a554;
 }
@@ -749,7 +758,7 @@ button.navbar-toggler, button.navbar-toggler-close{
 }
 .wrapper-monetize h1, .wrapper-tokens h1, .title-airdrop h1, .title-unique h1{
     color: #f38320!important;
-    font-size: 25px;
+    font-size: 23px;
     font-weight: 400;
     letter-spacing: 2px;
 }
@@ -1198,7 +1207,7 @@ ul.sub-menu a.nav-link {
     }
     
     .title-download h1{
-        font-size: 16px;
+        font-size: 14px;
     }
     .description-2{
         left: 0;
@@ -1248,7 +1257,7 @@ ul.sub-menu a.nav-link {
         padding: 0 15px;
     }
     .wrapper-monetize h1, .wrapper-tokens h1, .title-airdrop h1, .title-unique h1{
-        font-size: 18px;
+        font-size: 16px;
     }
     .tooltip, .tooltip-phi{
         opacity: .7;
