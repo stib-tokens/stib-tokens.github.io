@@ -336,7 +336,7 @@ $(document).ready(function () {
         // roadmap[6]
         {
             "tooltip": "Xem ảnh lớn",
-            "title": "Road Map",
+            "title": "Tầm nhìn và Hướng đi",
             "imgSrc": "images/roadmap-vn.png",
             "imgSrcMobile": "images/roadmap-vn.png",
             "description": "Mục đích là phát triển một Hợp Đồng Thông Minh để gây dựng đà bay cho tiền điện tử cất cánh với định hướng cộng đồng.",
