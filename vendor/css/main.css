@@ -35,7 +35,7 @@
 #en-lang.active .img-lang{
     opacity: 1;
 }
-#en-lang.active{
+.lang-select.active{
     opacity: .6;
 }
 .show-current-lang span {
@@ -88,7 +88,7 @@ ul.lang-choice li:hover .img-lang{
 }
 
 ul.lang-choice li {
-    padding: 5px 0;
+    padding: 7px 0;
     cursor: pointer;
 }
 

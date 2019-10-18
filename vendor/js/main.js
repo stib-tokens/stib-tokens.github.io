@@ -87,59 +87,10 @@ $(document).ready(function () {
         event.preventDefault();
         $('#modalPhi').removeClass('zoom-out');
         $('#modalPhi').addClass('zoom-in');
-    })
+    });
 
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
+
     
-    $(window).resize(function () {
-        google.charts.setOnLoadCallback(drawChart);
-    })
-
-    var options = {
-        'chartArea': {
-            width: '94%' // width inside chart !important 
-        },
-        'width': '100%',
-        'height': '100%',
-        'backgroundColor': 'transparent',
-        'titleTextStyle': {
-            color: '#f38320',
-            fontSize: 16,
-        },
-        'fontSize': 14,
-        'chartArea.left': 0,
-        'chartArea.top': 0,
-        'legend': {
-            position: 'labeled',
-            textStyle: {
-                color: '#fff',
-                fontSize: 12,
-            },
-            alignment: 'center',
-        },
-        'tooltip': {
-            trigger: 'none'
-            // textStyle: {
-            //     fontSize: 11
-            // }
-        }
-    };
-    // Draw the chart and set the chart values
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Tokens', 'Tokens part'],
-            ['Locked for futures', 50],
-            ['Private Sales/IEO', 13.7],
-            ['Airdrop/Charity', 21.3],
-            ['StiB Team', 15]
-        ]);
-        // Load google charts
-        var chart = new google.visualization.PieChart(document.getElementById('piechart-tokens'));
-        chart.draw(data, options);
-    }
-
-    ///////////////////////////////////////////////
 
     for (let index = 0; index < $('.q-li').length; index++) {
         $('.q-li').eq(index).click(function (event) {

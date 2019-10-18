@@ -1,6 +1,143 @@
-document.addEventListener('DOMContentLoaded', function(){
-    var btnEng = document.getElementById('btnEngLang');
-    var btnVn = document.getElementById('btnVnLang');
+$(document).ready(function (){
+    // set default language
+    var langChoice;
+    $.get("https://ipinfo.io", function(response) {
+        langChoice = localStorage.getItem("language");
+        if(langChoice == null || langChoice == undefined){
+            console.log("nulllll");
+            if(response.country == "VN"){
+                localStorage.setItem("language", "VN");
+            }
+            else{
+                localStorage.setItem("language", "EN");
+            }
+        }
+        langChoice = localStorage.getItem("language");
+        console.log(langChoice);// work!
+        if(langChoice!==null){
+            if(langChoice == "EN"){
+                $('.lang-select').eq(0).addClass('active'); // set default
+                switchLang(langEng);
+            }
+            else{
+                $('.lang-select').eq(1).addClass('active'); // set default
+                switchLang(langVn);
+            }
+        }
+        $('.show-current-lang span').text(langChoice); // set default
+        clickContent();
+        console.log(langChoice); // work!
+        loadContent();
+        
+    }, "jsonp")
+    .fail(function(){
+        // console.log("1111111111111111111111111"); // work!
+        alert("Your browers is not supported for other languages!");
+        $('.show-current-lang span').text("EN");
+        localStorage.setItem("language", "EN");
+        langChoice = localStorage.getItem("language");
+        $('.lang-select').eq(0).addClass('active'); // set default
+        clickContent();
+        console.log(langChoice); // work!
+        loadContent();
+    })
+
+    function clickContent(){
+        $('.show-current-lang').click(function(event){
+            event.preventDefault();
+            $('.lang-choice').toggleClass('active');
+            $('.img-lang-current').toggleClass('active');
+        })
+        // click ul
+        for (let index = 0; index < $('.lang-select').length; index++) {
+            $('.lang-select').eq(index).click(function(event){
+                event.preventDefault();
+                // style change
+                if($('.lang-choice').hasClass('active')){$('.lang-choice').removeClass('active');}
+                if($('.img-lang-current').hasClass('active')){$('.lang-choice').removeClass('active');}
+    
+                for (let j = 0; j < $('.lang-select').length; j++) {
+                    $('.lang-select').eq(j).removeClass('active');
+                }
+                $('.lang-select').eq(index).addClass('active');
+
+                if(index == 0){ // EN
+                    localStorage.setItem("language", "EN");
+                    langChoice = localStorage.getItem("language");
+                    location.reload();
+                    // switchLang(langEng);
+                }
+                else if(index == 1){ // VN
+                    localStorage.setItem("language", "VN");
+                    langChoice = localStorage.getItem("language");
+                    location.reload();
+                    // switchLang(langVn);
+                }
+                else{
+                    localStorage.setItem("language", "EN");
+                    langChoice = localStorage.getItem("language");
+                    switchLang(langEng);
+                }
+                langChoice = localStorage.getItem("language");
+                $('.show-current-lang span').text(langChoice);
+            });
+        }
+    }
+    function loadContent(){
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(() => drawChart());
+        
+        $(window).resize(function () {
+            google.charts.setOnLoadCallback(drawChart);
+        })
+    
+        var options = {
+            'chartArea': {
+                width: '94%' // width inside chart !important 
+            },
+            'width': '100%',
+            'height': '100%',
+            'backgroundColor': 'transparent',
+            'titleTextStyle': {
+                color: '#f38320',
+                fontSize: 16,
+            },
+            'fontSize': 14,
+            'chartArea.left': 0,
+            'chartArea.top': 0,
+            'legend': {
+                position: 'labeled',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 12,
+                },
+                alignment: 'center',
+            },
+            'tooltip': {
+                trigger: 'none'
+                // textStyle: {
+                //     fontSize: 11
+                // }
+            }
+        };
+        // Draw the chart and set the chart values
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Tokens', 'Tokens part'],
+                [langChoice == 'VN' ? 'Vốn tương lai': 'Locked for futures', 50],
+                [langChoice == 'VN' ? 'Huy động vốn': 'Private Sales/IEO', 13.7],
+                [langChoice == 'VN' ? 'Airdrop/Từ thiện': 'Airdrop/Charity', 21.3],
+                [langChoice == 'VN' ? 'Đội StiB': 'StiB Team', 15]
+            ]);
+            // Load google charts
+            var chart = new google.visualization.PieChart(document.getElementById('piechart-tokens'));
+            chart.draw(data, options);
+        }
+    
+        ///////////////////////////////////////////////
+    }
+
+    
     const langEng = [
         // banner [0]
         {
@@ -10,72 +147,52 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         // menu[1]
         {
-            "title1": "StiB PHILOSOPHY",
-            "title2": "StiB TOKENS",
-            "title3": "HOW StiB MONETIZE"
+            "title1": "StiB TOKENS",
+            "title2": "AIRDROP SCHEME",
+            "title3": "ROAD MAP",
+            "title4": "OUR TEAM",
+            "title5": "StiB DIFFERS",
+            "title6": "CONTACT"
         },
         // tokens [2]
         {
-            "tab1": "Airdrop Scheme",
-            "tab2": "Tokens Utility",
-            "tab3": "StiB Plan",
-            "tab4": "StiB Unique",
+            "description": "'sti'is our utility token within StiB’s ecosystem and token holders will benefit from projects, services and products in the future.",
 
-            "title1col1": "Amount of Sti tokens bought",
-            "title1col2": "Monthly bonus (Stis)",
-            "title1col3": "	Total bonus in 6 months (Stis)",
+            "text1": "Token Name: sti",
+            "text2": "Token Type: ERC-20",
+            "text3": "Token Supply: 8,000,000,000 STIs",
+            "text4": "Hard Cap: $5,480,000",
+            "text5": "Market Cap at Circulation: $40M",
+            "text6": "Token Price",
 
-            "title2col1row1": "Token Name",
-            "title2col1row2": "Token Type",
-            "title2col1row3": "Token Supply",
-            "title2col1row4": "Token price",
-            "title2col1row5": "Hard Cap",
-            "title2col1row6": "Private Sales",
-            "title2col1row7": "Public sale Date",
-            "title2col1row8": "Primary Exchange Listing",
-            "title2col1row9": "Initial Circulating Supply",
-            
-            "title2col2row6": "Q4 2019 - Seed round to reach soft Cap\nQ1 2020 - Pre-listing round to reach hard Cap",
-            "title2col2row7": "Date - Launch on TBD",
-            "title2col2row8": "Date - Listing on TBD",
-            "title2col2row9": "1.5% of total Supply",
-
-            "title3col1row1": "Timeline",
-            "title3col1row3": "By 2022",
-            "title3col1row4": "By 2024",
-            "title3col1row5": "Beyond 2025",
-
-            "title3col2row1": "Phases",
-            "title3col2row2": "StiB P2P = Trades+Loans",
-
-            "title3col3row1": "Team",
-
-            "title3col4row1": "Global Reach",
-
-
-            "title4col1row1": "What we offer",
-            "title4col1row2": "Commissions Free",
-            "title4col1row3": "Legal Protections",
-            "title4col1row4": "Share profits to all",
-            "title4col1row5": "Unbanked & Financial Inclusions",
-
-            "title4col3row1": "Others",
-            "title4col3row3": "Nothing",
-            "title4col3row4": "Airdrops",
-            "title4col3row5": "Some",
-
-            "title4col4row1": "They offer",
-            "title4col4row2": "High Fees",
-            "title4col4row3": "You’re on your own",
-            "title4col4row4": "Profits not for you",
-            "title4col4row5 ": "PR only no vision",
+            "title21": "Private Sales:",
+            "text21": " Q4 2019 - Seed round soft Cap ($1,000,000)\nQ1 2020 - Pre-listing soft Cap ($3,480,000)",
+            "title22": "Public sale Date:",
+            "text22": " Date - October 15",
+            "title23": "Primary Exchange Listing:",
+            "text23": " Date - Listing on TBD",
+            "title24": "Initial Circulating Supply:",
+            "text24": " 3.7% of total Supply",
         },
-        // monetize [3]
+        // intro [3]
         {
-            "title1": "Use of funds",
-            "title2": "How StiB Monetize ?",
-            "text1": "THROUGH StiB RESERVES WITH INSTANT SETTLEMENTS ON FIATS-CRYPTOS & CRYPTOS-CRYPTOS FOR BOTH TRADING + LENDING.",
-            "text2": "$10-$100 ON EACH VERIFIED ACCOUNT WITH 10-100 ETH (1-10 BTC EARLY NEXT YEAR)\nTOTAL WILL BE $6M AT THE IEO PRICE OR 15% TOTAL SUPPLY."
+            "ques1": "WHO WE ARE?",
+            "ques2": "StiB TOKENS?",
+            "ques3": "HOW StiB MONETIZES?",
+
+            "ans1": "We decentralize and leave no one behind!",
+            "ans2": "Using a smart queue so StiB token holders can each earn a chance at investing instead of Lottery or gaming to be who has the fastest finger or bot.",
+            "ans3": "Through StiB Reserves with instant settlements on fiats-cryptos & Cryptos-Cryptos for both Trading + Lending."
+        },
+        // download[4]
+        {
+            "title": "StiB P2P is available now for trading/Lending on iOS and Android!",
+            "button": "Try it now on StiB P2P"
+        },
+        // airdrop[5]
+        {
+            "title": "Airdrop Scheme",
+            
         }
     ];
     // ////////////////////////////////////////////////////////////
@@ -83,238 +200,74 @@ document.addEventListener('DOMContentLoaded', function(){
         // banner [0]
         {
             "title": 'HƯỚNG ĐI CỦA StiB',
-            "description": "Chúng tôi hướng đến những điều tích cực!",
+            "description": "We focus on positive side of things!",
             "tooltip": "Xem ảnh lớn"
         },
         // menu[1]
         {
-            "title1": "HƯỚNG ĐI",
-            "title2": "StiB TOKENS",
-            "title3": "TẠO LỢI NHUẬN"
+            "title1": "StiB TOKENS",
+            "title2": "BẢNG AIRDROP",
+            "title3": "LỘ TRÌNH",
+            "title4": "THÀNH VIÊN",
+            "title5": "ĐIỂM KHÁC BIỆT",
+            "title6": "LIÊN HỆ"
         },
         // tokens [2]
         {
-            "tab1": "Kế hoạch Airdrop",
-            "tab2": "Token Tiện Ích",
-            "tab3": "Kế hoạch của StiB",
-            "tab4": "Nét độc nhất của StiB",
+            "description": "'sti' là tên của Token trong hệ sinh thái của StiB và người giữ token sẽ có quyền lợi trong nghiên cứu, dịch vụ và các sản phẩm trong tương lai.",
 
-            "title1col1": "Số lượng Token Sti bán ra",
-            "title1col2": "Thưởng mỗi tháng (Stis)",
-            "title1col3": "Tổng thưởng trong 6 tháng (Stis)",
+            "text1": "Tên Token: sti",
+            "text2": "Loại Token: ERC-20",
+            "text3": "Tổng Token: 8,000,000,000 STIs",
+            "text4": "Vốn huy động: $5,480,000",
+            "text5": "Tổng giá tr: $40M",
+            "text6": "GIÁ TOKENS",
 
-            "title2col1row1": "Tên Token",
-            "title2col1row2": "Loại Token",
-            "title2col1row3": "Giá Token",
-            "title2col1row4": "Tổng lượng Token tối đa",
-            "title2col1row5": "Vốn huy động",
-            "title2col1row6": "Huy động vốn cá nhân",
-            "title2col1row7": "Ngày bán ra",
-            "title2col1row8": "Ngày lên sàn giao dịch",
-            "title2col1row9": "Số lượng trả ban đầu",
-            
-            "title2col2row6": "Quý 4 2019 - Bắt đầu huy động vốn\nQuý 1 2020 - Kết thúc huy động vốn",
-            "title2col2row7": "Chưa quyết định ngày",
-            "title2col2row8": "Chưa quyết định ngày",
-            "title2col2row9": "1.5% trên tổng vốn đầu tư",
-
-            "title3col1row1": "Mốc thời gian",
-            "title3col1row3": "Từ 2022",
-            "title3col1row4": "Từ 2024",
-            "title3col1row5": "Sau 2025",
-
-            "title3col2row1": "Giai đoạn",
-            "title3col2row2": "StiB P2P = Giao dịch+Vay mượn",
-
-            "title3col3row1": "Nhóm",
-
-            "title3col4row1": "Người dùng",
-
-
-            "title4col1row1": "StiB có",
-            "title4col1row2": "Không phí giao dịch",
-            "title4col1row3": "Bảo vệ pháp lý",
-            "title4col1row4": "Chia sẻ lợi nhuận",
-            "title4col1row5": "Không có ngân hàng & Không tiếp cận kênh tài chính",
-
-            "title4col3row1": "Nơi khác",
-            "title4col3row3": "Không",
-            "title4col3row4": "Tiền khuyến mãi",
-            "title4col3row5": "Có thể",
-
-            "title4col4row1": "Họ có",
-            "title4col4row2": "Phí cao",
-            "title4col4row3": "Tự làm tự chịu",
-            "title4col4row4": "Không chia sẻ",
-            "title4col4row5": "Quảng cáo không rõ ràng",
+            "title21": "Huy động vốn:",
+            "text21": " Quý 4 2019 - Bắt đầu huy động vốn ($1,000,000) \n Quý 1 2020 - Kết thúc huy động vốn ($3,480,000)",
+            "title22": "Ngày bán ra:",
+            "text22": " Date - Ngày 15 tháng 10",
+            "title23": "Ngày lên sàn giao dịch:",
+            "text23": " Chưa có",
+            "title24": "Số lượng trả ban đầu:",
+            "text24": " 3.7% trên tổng vốn đầu tư",
         },
-        // monetize [3]
-        {
-            "title1": "Nguồn vốn sử dụng",
-            "title2": "StiB tạo lợi nhuận như thế nào ?",
-            "text1": "VỚI QUỸ DỰ TRỮ StiB RESERVES, KHÁCH HÀNG CÓ THỂ GIAO DỊCH HOẶC VAY MƯỢN NGAY VỚI CÔNG TY NHANH CHÓNG BẰNG TIỀN MẶT HOẶC TIỀN ĐIỆN TỬ ",
-            "text2": "$10-$100 với mỗi tài khoản đã được xác minh 10-100 ETH (1-10 BTC vào đầu năm sau)\nTổng vốn sẽ là $6M tại sàn IEO hoặc 15% tổng vốn đầu tư."
-        }
+
     ];
 
-    //////////////////////////////////////////////////////////////
-    var switchLang = document.getElementsByClassName('lang');
-    
-
-    btnEng.addEventListener('click', function(event){
-        event.preventDefault();
-        for (let index = 0; index < switchLang.length; index++) {
-            switchLang[index].classList.remove('lang-active');
-        }
-        btnEng.classList.add('lang-active');
-
+    function switchLang(lang){
+        // console.log("da chuyen sang" + langChoice); // work!
         // banner [0]
-        document.getElementById('ani-title').innerHTML = langEng[0].title;
-        document.getElementById('ani-text').innerHTML = langEng[0].description;
-        document.getElementsByClassName('tooltip-phi')[0].innerHTML = langEng[0].tooltip;
-
-        // menu [1]
-        document.getElementById('n1').innerHTML = langEng[1].title1;
-        document.getElementById('n2').innerHTML = langEng[1].title2;
-        document.getElementById('n3').innerHTML = langEng[1].title3;
-
+        $('#ani-title').text(lang[0].title);
+        $('#ani-text').text(lang[0].description);
+        $('.tooltip-phi').text(lang[0].tooltip);
+        // menu[1]
+        $('.n1').text(lang[1].title1);
+        $('.n2').text(lang[1].title2);
+        $('.n3').text(lang[1].title3);
+        $('.n4').text(lang[1].title4);
+        $('.n5').text(lang[1].title5);
+        $('.n6').text(lang[1].title6);
         // tokens [2]
-        document.getElementById('tab1').innerHTML = langEng[2].tab1;
-        document.getElementById('tab2').innerHTML = langEng[2].tab2;
-        document.getElementById('tab3').innerHTML = langEng[2].tab3;
-        document.getElementById('tab4').innerHTML = langEng[2].tab4;
+        $('#tokens .description p').text(lang[2].description);
+        $('#tokens .grid-1 .token-utility li:nth-child(1) span').text(lang[2].text1);
+        $('#tokens .grid-1 .token-utility li:nth-child(2) span').text(lang[2].text2);
+        $('#tokens .grid-1 .token-utility li:nth-child(3) span').text(lang[2].text3);
+        $('#tokens .grid-1 .token-utility li:nth-child(4) span').text(lang[2].text4);
+        $('#tokens .grid-1 .token-utility li:nth-child(5) span').text(lang[2].text5);
+        $('#tokens .grid-1 .token-utility li:nth-child(6) span.utility-price-title').text(lang[2].text6);
 
-        document.getElementById('title1col1').innerHTML = langEng[2].title1col1;
-        document.getElementById('title1col2').innerHTML = langEng[2].title1col2;
-        document.getElementById('title1col3').innerHTML = langEng[2].title1col3;
+        $('#tokens .grid-2 .token-utility li:nth-child(1) span.utility-title').text(lang[2].title21);
+        $('#tokens .grid-2 .token-utility li:nth-child(1) span:last-child').text(lang[2].text21);
+        $('#tokens .grid-2 .token-utility li:nth-child(1) span:last-child').html($('#tokens .grid-2 .token-utility li:nth-child(1) span:last-child').html().replace(/\n/g,'<br/>'));
 
-        document.getElementById('title2col1row1').innerHTML = langEng[2].title2col1row1;
-        document.getElementById('title2col1row2').innerHTML = langEng[2].title2col1row2;
-        document.getElementById('title2col1row3').innerHTML = langEng[2].title2col1row3;
-        document.getElementById('title2col1row4').innerHTML = langEng[2].title2col1row4;
-        document.getElementById('title2col1row5').innerHTML = langEng[2].title2col1row5;
-        document.getElementById('title2col1row6').innerHTML = langEng[2].title2col1row6;
-        document.getElementById('title2col1row7').innerHTML = langEng[2].title2col1row7;
-        document.getElementById('title2col1row8').innerHTML = langEng[2].title2col1row8;
-        document.getElementById('title2col1row9').innerHTML = langEng[2].title2col1row9;
+        $('#tokens .grid-2 .token-utility li:nth-child(2) span.utility-title').text(lang[2].title22);
+        $('#tokens .grid-2 .token-utility li:nth-child(2) span:last-child').text(lang[2].text22);
 
-        document.getElementById('title2col2row6').innerHTML = langEng[2].title2col2row6;
-        document.getElementById('title2col2row7').innerHTML = langEng[2].title2col2row7;
-        document.getElementById('title2col2row8').innerHTML = langEng[2].title2col2row8;
-        document.getElementById('title2col2row9').innerHTML = langEng[2].title2col2row9;
+        $('#tokens .grid-2 .token-utility li:nth-child(3) span.utility-title').text(lang[2].title23);
+        $('#tokens .grid-2 .token-utility li:nth-child(3) span:last-child').text(lang[2].text23);
 
-        document.getElementById('title3col1row1').innerHTML = langEng[2].title3col1row1;
-        document.getElementById('title3col1row3').innerHTML = langEng[2].title3col1row3;
-        document.getElementById('title3col1row4').innerHTML = langEng[2].title3col1row4;
-        document.getElementById('title3col1row5').innerHTML = langEng[2].title3col1row5;
-        
-        document.getElementById('title3col2row1').innerHTML = langEng[2].title3col2row1;
-        document.getElementById('title3col2row2').innerHTML = langEng[2].title3col2row2;
-
-        document.getElementById('title3col3row1').innerHTML = langEng[2].title3col3row1;
-
-        document.getElementById('title3col4row1').innerHTML = langEng[2].title3col4row1;
-
-        document.getElementById('title4col1row1').innerHTML = langEng[2].title4col1row1;
-        document.getElementById('title4col1row2').innerHTML = langEng[2].title4col1row2;
-        document.getElementById('title4col1row3').innerHTML = langEng[2].title4col1row3;
-        document.getElementById('title4col1row4').innerHTML = langEng[2].title4col1row4;
-        document.getElementById('title4col1row5').innerHTML = langEng[2].title4col1row5;
-
-        document.getElementById('title4col3row1').innerHTML = langEng[2].title4col3row1;
-        document.getElementById('title4col3row3').innerHTML = langEng[2].title4col3row3;
-        document.getElementById('title4col3row4').innerHTML = langEng[2].title4col3row4;
-        document.getElementById('title4col3row5').innerHTML = langEng[2].title4col3row5;
-
-        document.getElementById('title4col4row1').innerHTML = langEng[2].title4col4row1;
-        document.getElementById('title4col4row2').innerHTML = langEng[2].title4col4row2;
-        document.getElementById('title4col4row3').innerHTML = langEng[2].title4col4row3;
-        document.getElementById('title4col4row4').innerHTML = langEng[2].title4col4row4;
-        document.getElementById('title4col4row5').innerHTML = langEng[2].title4col4row5;
-
-        // monetize [3]
-        document.getElementById('title-monetize').innerHTML = langEng[3].title2;
-        document.getElementById('content-monetize').innerHTML = langEng[3].text1;
-        document.getElementById('title-funds').innerHTML = langEng[3].title1;
-        document.getElementById('content-tokens').innerHTML = langEng[3].text2;
-
-    });
-
-    btnVn.addEventListener('click', function(event){
-        event.preventDefault();
-        for (let index = 0; index < switchLang.length; index++) {
-            switchLang[index].classList.remove('lang-active');
-        }
-        btnVn.classList.add('lang-active');
-        
-        // banner [0]
-        document.getElementById('ani-title').innerHTML = langVn[0].title;
-        document.getElementById('ani-text').innerHTML = langVn[0].description;
-        document.getElementsByClassName('tooltip-phi')[0].innerHTML = langVn[0].tooltip;
-
-        // menu [1]
-        document.getElementById('n1').innerHTML = langVn[1].title1;
-        document.getElementById('n2').innerHTML = langVn[1].title2;
-        document.getElementById('n3').innerHTML = langVn[1].title3;
-
-        // tokens [2]
-        document.getElementById('tab1').innerHTML = langVn[2].tab1;
-        document.getElementById('tab2').innerHTML = langVn[2].tab2;
-        document.getElementById('tab3').innerHTML = langVn[2].tab3;
-        document.getElementById('tab4').innerHTML = langVn[2].tab4;
-
-        document.getElementById('title1col1').innerHTML = langVn[2].title1col1;
-        document.getElementById('title1col2').innerHTML = langVn[2].title1col2;
-        document.getElementById('title1col3').innerHTML = langVn[2].title1col3;
-
-        document.getElementById('title2col1row1').innerHTML = langVn[2].title2col1row1;
-        document.getElementById('title2col1row2').innerHTML = langVn[2].title2col1row2;
-        document.getElementById('title2col1row3').innerHTML = langVn[2].title2col1row3;
-        document.getElementById('title2col1row4').innerHTML = langVn[2].title2col1row4;
-        document.getElementById('title2col1row5').innerHTML = langVn[2].title2col1row5;
-        document.getElementById('title2col1row6').innerHTML = langVn[2].title2col1row6;
-        document.getElementById('title2col1row7').innerHTML = langVn[2].title2col1row7;
-        document.getElementById('title2col1row8').innerHTML = langVn[2].title2col1row8;
-        document.getElementById('title2col1row9').innerHTML = langVn[2].title2col1row9;
-
-        document.getElementById('title2col2row6').innerHTML = langVn[2].title2col2row6;
-        document.getElementById('title2col2row7').innerHTML = langVn[2].title2col2row7;
-        document.getElementById('title2col2row8').innerHTML = langVn[2].title2col2row8;
-        document.getElementById('title2col2row9').innerHTML = langVn[2].title2col2row9;
-
-        document.getElementById('title3col1row1').innerHTML = langVn[2].title3col1row1;
-        document.getElementById('title3col1row3').innerHTML = langVn[2].title3col1row3;
-        document.getElementById('title3col1row4').innerHTML = langVn[2].title3col1row4;
-        document.getElementById('title3col1row5').innerHTML = langVn[2].title3col1row5;
-        
-        document.getElementById('title3col2row1').innerHTML = langVn[2].title3col2row1;
-        document.getElementById('title3col2row2').innerHTML = langVn[2].title3col2row2;
-
-        document.getElementById('title3col3row1').innerHTML = langVn[2].title3col3row1;
-
-        document.getElementById('title3col4row1').innerHTML = langVn[2].title3col4row1;
-
-        document.getElementById('title4col1row1').innerHTML = langVn[2].title4col1row1;
-        document.getElementById('title4col1row2').innerHTML = langVn[2].title4col1row2;
-        document.getElementById('title4col1row3').innerHTML = langVn[2].title4col1row3;
-        document.getElementById('title4col1row4').innerHTML = langVn[2].title4col1row4;
-        document.getElementById('title4col1row5').innerHTML = langVn[2].title4col1row5;
-
-        document.getElementById('title4col3row1').innerHTML = langVn[2].title4col3row1;
-        document.getElementById('title4col3row3').innerHTML = langVn[2].title4col3row3;
-        document.getElementById('title4col3row4').innerHTML = langVn[2].title4col3row4;
-        document.getElementById('title4col3row5').innerHTML = langVn[2].title4col3row5;
-
-        document.getElementById('title4col4row1').innerHTML = langVn[2].title4col4row1;
-        document.getElementById('title4col4row2').innerHTML = langVn[2].title4col4row2;
-        document.getElementById('title4col4row3').innerHTML = langVn[2].title4col4row3;
-        document.getElementById('title4col4row4').innerHTML = langVn[2].title4col4row4;
-        document.getElementById('title4col4row5').innerHTML = langVn[2].title4col4row5;
-
-        // monetize [3]
-        document.getElementById('title-monetize').innerHTML = langVn[3].title2;
-        document.getElementById('content-monetize').innerHTML = langVn[3].text1;
-        document.getElementById('title-funds').innerHTML = langVn[3].title1;
-        document.getElementById('content-tokens').innerHTML = langVn[3].text2;
-    });
+        $('#tokens .grid-2 .token-utility li:nth-child(4) span.utility-title').text(lang[2].title24);
+        $('#tokens .grid-2 .token-utility li:nth-child(4) span:last-child').text(lang[2].text24);
+    }
 })
