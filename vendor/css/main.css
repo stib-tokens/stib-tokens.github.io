@@ -32,7 +32,7 @@
     background: #333;
 }
 
-#en-lang.active .img-lang{
+.lang-select.active .img-lang{
     opacity: 1;
 }
 .lang-select.active{
