@@ -260,7 +260,8 @@ $(document).ready(function () {
         },
         // contact[9]
         {
-            "title": "Contact Us"
+            "title": "Contact Us",
+            "phone": "(+1)(617) 863−7286"
         },
         // footer [10]
         {
@@ -384,7 +385,8 @@ $(document).ready(function () {
         },
         // contact[9]
         {
-            "title": "Liên hệ"
+            "title": "Liên hệ",
+            "phone": "(+84) 90 609 7525"
         },
         // footer [10]
         {
@@ -495,6 +497,7 @@ $(document).ready(function () {
         $('#unique table.table tbody tr:nth-child(4) td:nth-child(4)').text(lang[8].tbodyTd44);
         // contact[9]
         $('.title-contact h1').text(lang[9].title);
+        $('#phone-number').text(lang[9].phone);
         // footer[10]
         $('#link-telegram').attr("href", lang[10].link);
         $('.link_ToS').text(lang[10].terms);
