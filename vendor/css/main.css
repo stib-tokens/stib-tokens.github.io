@@ -1185,9 +1185,7 @@ ul.sub-menu a.nav-link {
 	}
 }
 @media (min-width: 769px){
-    .guide-table{
-        display: none;
-    }
+    
     .tut-slide-horizon{
         display: none;
     }
@@ -1411,7 +1409,9 @@ ul.sub-menu a.nav-link {
     ul.wrapper-questions{
         width: 100%;
     }
-    
+    .guide-table{
+        display: none;
+    }
 }
 @media (max-width: 576px){
     .last-li{
