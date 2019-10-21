@@ -180,11 +180,12 @@ $(document).ready(function () {
             "title22": "Public sale Date:",
             "text22": " Date - October 15",
             "title23": "Primary Exchange Listing:",
-            "text23": " Date - Listing on TBD",
+            "text23": " Date - January 15, 2020 (tentative)",
             "title24": "Initial Circulating Supply:",
             "text24": " 3.7% of total Supply",
 
-            "invest": "INVEST NOW"
+            "invest": "INVEST NOW",
+            "link": "https://docs.google.com/forms/d/e/1FAIpQLSe2eiS61bGtIT5fuPQZoamsMti3pdAAcTUX1NxEJT6h089ehQ/viewform"
         },
         // intro [3]
         {
@@ -273,7 +274,7 @@ $(document).ready(function () {
         // banner [0]
         {
             "title": 'HƯỚNG ĐI CỦA StiB',
-            "description": "We focus on positive side of things!",
+            "description": "Chúng tôi hướng đến những điều tích cực!",
             "tooltip": "Xem ảnh lớn",
             "imgSrc": "images/philosophy-vn.png",
             "imgSrcMobile": "images/philosophy_mobile-vn.png"
@@ -283,15 +284,15 @@ $(document).ready(function () {
             "title1": "StiB TOKENS",
             "title2": "KẾ HOẠCH AIRDROP",
             "title3": "LỘ TRÌNH",
-            "title4": "THÀNH VIÊN",
+            "title4": "ĐỘI NGŨ",
             "title5": "ĐIỂM KHÁC BIỆT",
             "title6": "LIÊN HỆ"
         },
         // tokens [2]
         {
-            "description": "'sti' là tên của Token trong hệ sinh thái của StiB và người giữ token sẽ có quyền lợi trong nghiên cứu, dịch vụ và các sản phẩm trong tương lai.",
+            "description": "'Sti' là tên của Token trong hệ sinh thái của StiB và người giữ token sẽ có quyền lợi trong nghiên cứu, dịch vụ và các sản phẩm trong tương lai.",
 
-            "text1": "Tên Token: sti",
+            "text1": "Tên Token: Sti",
             "text2": "Loại Token: ERC-20",
             "text3": "Tổng Token: 8,000,000,000 STIs",
             "text4": "Vốn huy động: $5,480,000",
@@ -303,11 +304,12 @@ $(document).ready(function () {
             "title22": "Ngày bán ra:",
             "text22": " Date - Ngày 15 tháng 10",
             "title23": "Ngày lên sàn giao dịch:",
-            "text23": " Chưa có",
+            "text23": "15/01/2020 (dự kiến)",
             "title24": "Số lượng trả ban đầu:",
             "text24": " 3.7% trên tổng vốn đầu tư",
 
-            "invest": "ĐẦU TƯ NGAY"
+            "invest": "ĐẦU TƯ NGAY",
+            "link": "https://docs.google.com/forms/d/e/1FAIpQLSezsmT_B6xgfGE626N7HkWMWx61pGRrRcDOPra6DJ2IkRjCtA/viewform"
         },
         // intro [3]
         {
@@ -316,8 +318,8 @@ $(document).ready(function () {
             "ques3": "LỢI NHUẬN StiB?",
 
             "ans1": "We decentralize and leave no one behind!",
-            "ans2": "Sử dụng hàng đợi thông minh nên người giữ token có thể đầu tư thay vì xổ sổ hoặc chơi trò chơi để trở thành người hoặc bot nhanh nhất.",
-            "ans3": "Với quỹ dự trữ StiB Reserves, khách hàng có thể giao dịch hoặc vay mượn ngay với công ty nhanh chóng bằng tiền mặt hoặc tiền điện tử."
+            "ans2": "Sử dụng nhiều phương pháp thông minh hơn, chủ sở hữu StiB Tokens đều có cơ hội đầu tư thay vì bị quyết định theo phương thức quay số truyền thống hoặc phải tham gia vào trò chơi may rủi mà người thắng cuộc là người nhanh tay nhất.",
+            "ans3": "Với quỹ dự trữ StiB Reserves, khách hàng có thể giao dịch (mua bán/cho vay, mượn) với công ty nhanh chóng bằng tiền tệ hoặc tiền điện tử."
         },
         // download[4]
         {
@@ -339,8 +341,8 @@ $(document).ready(function () {
             "title": "Tầm nhìn và Hướng đi",
             "imgSrc": "images/roadmap-vn.png",
             "imgSrcMobile": "images/roadmap-vn.png",
-            "description": "Mục đích là phát triển một Hợp Đồng Thông Minh để gây dựng đà bay cho tiền điện tử cất cánh với định hướng cộng đồng.",
-            "description2": "Mục tiêu cao nhất của chúng tôi là tạo nên một công cụ/ví tiền dành cho tất cả mọi người để giao dịch, đầu tư, vay mượn, thanh toán,... với sứ mệnh mang tiền điện tử đến gần hơn với công chúng. Tất cả đều nằm trong lòng bàn tay của bạn.",
+            "description": "Mục đích là mang tiền điện tử đến mọi người.",
+            "description2": "Mục tiêu cao nhất của chúng tôi là tạo nên một hệ sinh thái mở dành cho tất cả mọi người để giao dịch, đầu tư và thanh toán,... với sứ mệnh mang tiền điện tử đến gần hơn với công chúng. Quyền tự quyết nằm trong lòng bàn tay của bạn.",
         },
         // team[7]
         {
@@ -353,7 +355,7 @@ $(document).ready(function () {
         },
         // unique[8]
         {
-            "title": "StiB DIFFERS",
+            "title": "ĐIỂM KHÁC BIỆT",
             "titleSlogan": "StiB độc đáo và khác biệt.",
             "theadTh1": "StiB có",
             "theadTh2": "StiB",
@@ -430,6 +432,7 @@ $(document).ready(function () {
         $('#tokens .grid-2 .token-utility li:nth-child(4) span:last-child').text(lang[2].text24);
 
         $('.wrapper-invest a span').text(lang[2].invest);
+        $('#invest .wrapper-invest a').attr('href', lang[2].link);
         // intro[3]
         $('.wrapper-questions li.q-li:nth-child(1) h3').text(lang[3].ques1);
         $('.wrapper-questions li.q-li:nth-child(2) h3').text(lang[3].ques2);

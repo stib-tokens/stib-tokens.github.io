@@ -38,7 +38,17 @@
   -webkit-animation: zoomOut .5s forwards;
           animation: zoomOut .5s forwards;
 }
-
+@-webkit-keyframes leftright {
+	0% {right: -5px;}
+	50% {right: 5px;}
+	100% {right: -5px;}
+}
+  
+@keyframes leftright {
+	0% {right: -5px;}
+	50% {right: 5px;}
+	100% {right: -5px;}
+}
 @-webkit-keyframes zoomIn{
   0%{
     opacity: 0;

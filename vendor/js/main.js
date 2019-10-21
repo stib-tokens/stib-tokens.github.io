@@ -124,4 +124,22 @@ $(document).ready(function () {
             // },
         }
     });
+    // console.log($('#airdrop .wrapper-table-item').offset().left);
+    $('#airdrop .wrapper-table').scroll(function(){
+        // console.log($('#airdrop .wrapper-table-item').offset().left);
+        if($('#airdrop .wrapper-table-item').offset().left < 0){
+            $('.guide-table').addClass('deactive');
+        }
+        else{
+            $('.guide-table').removeClass('deactive');
+        }
+    })
+    $('#unique .wrapper-table').scroll(function(){
+        if($('#unique .wrapper-table-item').offset().left < 0){
+            $('.guide-table').addClass('deactive');
+        }
+        else{
+            $('.guide-table').removeClass('deactive');
+        }
+    })
 })
