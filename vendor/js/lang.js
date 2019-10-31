@@ -26,7 +26,7 @@ $(document).ready(function () {
         }
         $('.show-current-lang span').text(langChoice); // set default
         clickContent();
-        console.log(langChoice); // work!
+        console.log(langChoice);
         loadContent();
 
     }, "jsonp")
